@@ -1,5 +1,5 @@
 /*
- * STUDENT: (Type your name here)
+ * STUDENT: Jack Kieny
  */
 
 /*
@@ -101,7 +101,7 @@ struct node *insert_word(struct node *head, const char *word) {
  * of the words in alphabetical order, keeping track (as part of a node's
  * payload) how many times each word occurs in the file. */
 struct node *build_list() {
-    const char *filename = get_input("Enter the name of the book file");
+   // const char *filename = get_input("Enter the name of the book file");
     /* WRITE THE REST OF THIS FUNCTION */
     return NULL;
 }
@@ -154,7 +154,7 @@ char *get_string_input(const char *prompt) {
 int main() {
     struct node *list = build_list();
     // print_list(list);
-    char *challenge_word = get_input("Enter the challenge word");
-    printf("Response word: %s\n", respond(list, challenge_word));
+    //char *challenge_word = get_input("Enter the challenge word");
+    //printf("Response word: %s\n", respond(list, challenge_word));
     return 0;
 }

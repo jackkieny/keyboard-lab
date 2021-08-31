@@ -1,5 +1,5 @@
 /*
- * STUDENT: (Type your name here)
+ * STUDENT: Jack Kieny
  */
 
 /*
@@ -18,6 +18,13 @@
 #include <stdio.h>
 
 int main() {
-    /* WRITE THIS FUNCTION */
+    char uppercase_double_u = 0x57;
+    char loercase_double_u = 0x77;
+    char tab = 0x9;
+    char next_line =0xA;
+
+    printf("%s%c%s%c", "TO", tab, "Archie", next_line);
+    printf("%s%c%s%c%s%c%c", "RE", tab, "I need a ", uppercase_double_u, "orking Keyboard", next_line, next_line);
+    printf("%s%c%s%c", "Please order a ne", loercase_double_u, " keyboard for me. This one is broken.", next_line);
     return 0;
 }
