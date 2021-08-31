@@ -24,7 +24,7 @@ int main() {
     char next_line =0xA;
 
     printf("%s%c%s%c", "TO", tab, "Archie", next_line);
-    printf("%s%c%s%c%s%c%c", "RE", tab, "I need a ", uppercase_double_u, "orking Keyboard", next_line, next_line);
+    printf("%s%c%s%c%s%c%c", "RE", tab, "I Need a ", uppercase_double_u, "orking Keyboard", next_line, next_line);
     printf("%s%c%s%c", "Please order a ne", loercase_double_u, " keyboard for me. This one is broken.", next_line);
     return 0;
 }
