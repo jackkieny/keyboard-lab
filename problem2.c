@@ -33,7 +33,7 @@ int is_digit(char character) {
  * function returns the argument, unchanged. */
 char to_lowercase(char character) {
 
-    if(character >= 'a' && character <= 'z' || character >= '0' && character <= '9'){ //If character's ascii value is already lowercase
+    if(character >= 'a' && character <= 'z'){ //If character's ascii value is already lowercase
         return character; //return input character
     }
 
