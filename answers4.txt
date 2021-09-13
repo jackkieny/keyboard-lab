@@ -2,11 +2,22 @@ STUDENT: (Type your name here)
 
 1. WHY DOESN'T THE LOOP ON LINES 24-30 OF ARCHIE'S CODE ALWAYS EXECUTE?
 
-
+    Becuase the variable 'i' is not set on line 21 when it is declared, meaning
+    it is null. If you try to access this value or use it, it most likely be a
+    random string of characters and numbers (of a memory address) meaning that
+    sometimes the value will start greater than 3 meaning that the while loop
+    never runs.
 
 2. ARCHIE'S CODE CAN BE FIXED BY CHANGING ONE LINE. IT CAN ALSO BE FIXED BY
    INSERTING ONE LINE. WHAT LINE CAN BE CHANGED TO FIX THE BUG, AND WHAT SHOULD
    THE LINE BE CHANGED TO? (ALTERNATIVELY, WHAT LINE OF CODE CAN YOU INSERT TO
    FIX THE BUG, AND WHERE SHOULD THAT LINE GO?)
 
+    Archie's code can be fixed in multiple different ways, but only changing/adding
+    one line will still not make Archie's code function how he wants it to because
+    of the while loop on L24. 3 is not < 3 and so the program will print something
+    like: "...count of three! 1.. 2..\nHave fun!\n"
+
+    The way to fix this problem is to either add a line that sets i=1 (on L22)
+    or by adding it to L21, so it reads "int i = 1".
 
