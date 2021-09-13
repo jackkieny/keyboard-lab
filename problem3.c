@@ -36,9 +36,9 @@ int produce_multiple_of_ten(int seed) {
     sprintf(number_string, "%d", number);
     while (number_string[position_of_last_digit] != '0') {
         if (is_even(number)) {
-            number >>= 1 ;             // DIVIDE BY 2
+            number >>= 1;             // DIVIDE BY 2
         } else {
-            number = ;             // SUBTRACT 1 AND MULTIPLY THE DIFFERENCE BY 5
+            number = (2*(number>>1)) * five;             // SUBTRACT 1 AND MULTIPLY THE DIFFERENCE BY 5
         }
         position_of_last_digit = number > 0 ? (int)log10(number) : 0;
         sprintf(number_string, "%d", number);
