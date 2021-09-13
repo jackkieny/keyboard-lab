@@ -20,8 +20,7 @@
 /* Returns 1 if the argument is an even number, and returns 0 if the argument
  * is an odd number */
 int is_even(int number) {
-    /* WRITE THIS FUNCTION */
-    return 0;
+    return !(number & 1);
 }
 
 /* Outputs a multiple of 10 by repeatedly applying a formula:
@@ -29,7 +28,7 @@ int is_even(int number) {
  * - if a positive number is even then divide it by 2
  * - if a positive number is odd then subtract 1 and multiply the difference by 5 */
 int produce_multiple_of_ten(int seed) {
-    int five = 0;                   /* CREATE THE VALUE 5 */
+    int five = 10>>1;                   /* CREATE THE VALUE 5 */
     int subtract_one_mask = 0;      /* CREATE A BITMASK YOU CAN USE TO SUBTRACT 1 */
     int number = seed > 0 ? seed : 0;
     int position_of_last_digit = number > 0 ? (int)log10(number) : 0;
@@ -37,9 +36,9 @@ int produce_multiple_of_ten(int seed) {
     sprintf(number_string, "%d", number);
     while (number_string[position_of_last_digit] != '0') {
         if (is_even(number)) {
-            number = 0;             // DIVIDE BY 2
+            number >>= 1 ;             // DIVIDE BY 2
         } else {
-            number = 0;             // SUBTRACT 1 AND MULTIPLY THE DIFFERENCE BY 5
+            number = ;             // SUBTRACT 1 AND MULTIPLY THE DIFFERENCE BY 5
         }
         position_of_last_digit = number > 0 ? (int)log10(number) : 0;
         sprintf(number_string, "%d", number);
