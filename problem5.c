@@ -45,6 +45,8 @@ struct node {
 struct node *create_node(const char *word) {
     struct node *new_node = malloc(sizeof(struct node));
     /* WRITE THE REST OF THIS FUNCTION */
+
+    strncpy(new_node->word, word, strlen(word));
     return new_node;
 }
 
@@ -53,6 +55,23 @@ struct node *create_node(const char *word) {
  * non-NULL, then that will become new_node's "next". */
 void insert_after(struct node *existing_node, struct node *new_node) {
     /* WRITE THIS FUNCTION */
+
+    if(new_node == NULL || existing_node == NULL){
+        printf("new_node and/or existing_node cannot be NULL\n\n");
+        exit(0);
+    }
+
+    if(existing_node->next != NULL){
+        new_node->next = existing_node->next->previous;
+        new_node->previous = existing_node->next;
+
+        existing_node->next->previous = new_node->next;
+        existing_node->next = new_node->previous;
+    }
+    else{
+        new_node->previous = existing_node->next;
+        existing_node->next = new_node->previous;
+    }
 }
 
 /* Inserts new_node into the list before existing_node; that is, new_node
@@ -60,6 +79,16 @@ void insert_after(struct node *existing_node, struct node *new_node) {
  * is non-NULL, then that will become new_node's "previous". */
 void insert_before(struct node *existing_node, struct node *new_node) {
     /* WRITE THIS FUNCTION */
+    if(existing_node->previous != NULL){
+         new_node->next = existing_node->previous;
+         new_node->previous = existing_node->previous->next;
+
+        existing_node->previous->next = new_node->previous;
+        existing_node->previous = new_node->next;
+    }else{
+        new_node->next = existing_node->previous;
+        existing_node->previous = new_node->next;
+    }
 }
 
 
@@ -69,7 +98,18 @@ void insert_before(struct node *existing_node, struct node *new_node) {
  * lowercase letters. The original string is unchanged. */
 char *word_to_lowercase(const char *word) {
     /* WRITE THIS FUNCTION */
-    return NULL;
+
+    int wordSize = strlen(word);
+    char tempString[wordSize+1];
+
+    strncpy(tempString, word, wordSize);
+    int i=0;
+    while(tempString[i]!='\0'){
+        tempString[i] = to_lowercase(tempString[i]);
+        i++;
+    }
+
+    return tempString;
 }
 
 /* Compares two words based on alphabetical order.
@@ -92,6 +132,9 @@ int compare_words(const char *word1, const char *word2) {
  * original head's word or if the original head is NULL). */
 struct node *insert_word(struct node *head, const char *word) {
     /* WRITE THIS FUNCTION */
+
+
+
     return NULL;
 }
 
@@ -153,8 +196,8 @@ char *get_string_input(const char *prompt) {
 
 int main() {
     struct node *list = build_list();
-    // print_list(list);
-    //char *challenge_word = get_input("Enter the challenge word");
-    //printf("Response word: %s\n", respond(list, challenge_word));
+//     print_list(list);
+//    char *challenge_word = get_input("Enter the challenge word");
+//    printf("Response word: %s\n", respond(list, challenge_word));
     return 0;
 }
