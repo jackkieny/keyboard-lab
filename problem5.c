@@ -49,6 +49,7 @@ struct node *create_node(const char *word) {
     strncpy(new_node->word, word, strlen(word));
     new_node->next = NULL;
     new_node->previous = NULL;
+    new_node->occurrences = 1;
     return new_node;
 }
 
@@ -83,8 +84,8 @@ void insert_before(struct node *existing_node, struct node *new_node) {
          new_node->next = existing_node;
          new_node->previous = existing_node->previous;
 
-        existing_node->previous= new_node;
-        existing_node->previous->next = new_node;
+         existing_node->previous->next = new_node;
+         existing_node->previous= new_node;
     }else{
         new_node->next = existing_node;
         existing_node->previous = new_node;
@@ -132,24 +133,24 @@ struct node *insert_word(struct node *head, const char *word) {
 
     if(head == NULL){
         struct node *new_node = create_node(word);
+        head = new_node;
         return new_node;
     }
 
-    int result = compare_words(head->word, word);
+    while (head != head->next){
+        int result = compare_words(head->word, word);
 
-    if(result<0){
+        if(result<0){
 
-    }else if(result>0){
+        }else if(result>0){
 
-    }else if(result==0){
+        }else if(result==0){
 
-    }else{
-        printf("Something went wrong...\n\n");
-        exit(0);
+        }else{
+            printf("Something went wrong...\n\n");
+            exit(0);
+        }
     }
-
-
-
     return NULL;
 }
 
@@ -158,11 +159,22 @@ struct node *insert_word(struct node *head, const char *word) {
  * punctuation has been removed, this function builds a doubly-linked list
  * of the words in alphabetical order, keeping track (as part of a node's
  * payload) how many times each word occurs in the file. */
-struct node *build_list() {
-   // const char *filename = get_input("Enter the name of the book file");
-    /* WRITE THE REST OF THIS FUNCTION */
-    return NULL;
-}
+
+//struct node *build_list() {
+//    const char *filename = get_string_input("Enter the name of the book file");
+//    /* WRITE THE REST OF THIS FUNCTION */
+//    FILE *file;
+//    char current_word[MAXIMUM_WORD_LENGTH];
+//    file = fopen(filename, "r");
+//
+//    while(fgets(current_word, MAXIMUM_WORD_LENGTH, file)!=NULL){
+//        insert_word(, current_word)
+//    }
+//
+//
+//    fclose(filename);
+//    return NULL;
+//}
 
 
 /*** PROBLEM 5.4: Respond to Challenge ***/
@@ -210,9 +222,21 @@ char *get_string_input(const char *prompt) {
 }
 
 int main() {
-    struct node *list = build_list();
+    //struct node *list = build_list();
 //     print_list(list);
 //    char *challenge_word = get_input("Enter the challenge word");
 //    printf("Response word: %s\n", respond(list, challenge_word));
+
+    struct node * first = create_node("word1");
+    struct node * second = create_node("word2");
+    struct node * third = create_node("word3");
+    struct node * before = create_node("before_third");
+    struct node *head = first;
+
+    insert_after(head, second);
+    insert_after(second, third);
+    insert_before(third, before);
+    print_list(head);
+
     return 0;
 }
