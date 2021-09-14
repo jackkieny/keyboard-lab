@@ -47,6 +47,8 @@ struct node *create_node(const char *word) {
     /* WRITE THE REST OF THIS FUNCTION */
 
     strncpy(new_node->word, word, strlen(word));
+    new_node->next = NULL;
+    new_node->previous = NULL;
     return new_node;
 }
 
@@ -55,39 +57,37 @@ struct node *create_node(const char *word) {
  * non-NULL, then that will become new_node's "next". */
 void insert_after(struct node *existing_node, struct node *new_node) {
     /* WRITE THIS FUNCTION */
-
     if(new_node == NULL || existing_node == NULL){
         printf("new_node and/or existing_node cannot be NULL\n\n");
         exit(0);
     }
 
     if(existing_node->next != NULL){
-        new_node->next = existing_node->next->previous;
-        new_node->previous = existing_node->next;
+        new_node->next = existing_node->next;
+        new_node->previous = existing_node;
 
-        existing_node->next->previous = new_node->next;
-        existing_node->next = new_node->previous;
+        existing_node->next = new_node;
+        new_node->next->previous = new_node;
     }
     else{
-        new_node->previous = existing_node->next;
-        existing_node->next = new_node->previous;
+        new_node->previous = existing_node;
+        existing_node->next = new_node;
     }
 }
-
 /* Inserts new_node into the list before existing_node; that is, new_node
  * becomes existing_node's "previous". If existing_node's original "previous"
  * is non-NULL, then that will become new_node's "previous". */
 void insert_before(struct node *existing_node, struct node *new_node) {
     /* WRITE THIS FUNCTION */
     if(existing_node->previous != NULL){
-         new_node->next = existing_node->previous;
-         new_node->previous = existing_node->previous->next;
+         new_node->next = existing_node;
+         new_node->previous = existing_node->previous;
 
-        existing_node->previous->next = new_node->previous;
-        existing_node->previous = new_node->next;
+        existing_node->previous= new_node;
+        existing_node->previous->next = new_node;
     }else{
-        new_node->next = existing_node->previous;
-        existing_node->previous = new_node->next;
+        new_node->next = existing_node;
+        existing_node->previous = new_node;
     }
 }
 
@@ -100,16 +100,13 @@ char *word_to_lowercase(const char *word) {
     /* WRITE THIS FUNCTION */
 
     int wordSize = strlen(word);
-    char tempString[wordSize+1];
+    char *lowercase_word[wordSize];
 
-    strncpy(tempString, word, wordSize);
-    int i=0;
-    while(tempString[i]!='\0'){
-        tempString[i] = to_lowercase(tempString[i]);
-        i++;
+    for(int i=0; i<wordSize; i++){
+        *lowercase_word[i] = *word_to_lowercase(&word[i]);
     }
 
-    return tempString;
+    return *lowercase_word;
 }
 
 /* Compares two words based on alphabetical order.
@@ -132,6 +129,24 @@ int compare_words(const char *word1, const char *word2) {
  * original head's word or if the original head is NULL). */
 struct node *insert_word(struct node *head, const char *word) {
     /* WRITE THIS FUNCTION */
+
+    if(head == NULL){
+        struct node *new_node = create_node(word);
+        return new_node;
+    }
+
+    int result = compare_words(head->word, word);
+
+    if(result<0){
+
+    }else if(result>0){
+
+    }else if(result==0){
+
+    }else{
+        printf("Something went wrong...\n\n");
+        exit(0);
+    }
 
 
 
