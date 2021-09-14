@@ -101,13 +101,13 @@ char *word_to_lowercase(const char *word) {
     /* WRITE THIS FUNCTION */
 
     int wordSize = strlen(word);
-    char *lowercase_word[wordSize];
+    char *lowercase_word= (char *)malloc(sizeof(char) * wordSize);
 
     for(int i=0; i<wordSize; i++){
-        *lowercase_word[i] = *word_to_lowercase(&word[i]);
+        lowercase_word[i] = to_lowercase(word[i]);
     }
 
-    return *lowercase_word;
+    return lowercase_word;
 }
 
 /* Compares two words based on alphabetical order.
@@ -133,11 +133,11 @@ struct node *insert_word(struct node *head, const char *word) {
 
     if(head == NULL){
         struct node *new_node = create_node(word);
-        head = new_node;
         return new_node;
     }
 
-    while (head != head->next){
+    while (head->next != NULL){
+
         int result = compare_words(head->word, word);
 
         if(result<0){
@@ -231,12 +231,17 @@ int main() {
     struct node * second = create_node("word2");
     struct node * third = create_node("word3");
     struct node * before = create_node("before_third");
+    struct node * upperCase = create_node("UpPeRcASe");
     struct node *head = first;
 
     insert_after(head, second);
     insert_after(second, third);
     insert_before(third, before);
+    word_to_lowercase(upperCase->word);
+    insert_after(third, upperCase);
+    printf("%s\n\n", word_to_lowercase(upperCase->word));
     print_list(head);
+
 
     return 0;
 }
